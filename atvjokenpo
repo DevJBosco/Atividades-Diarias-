@@ -3,7 +3,11 @@ jogador2=0
 empate=0
 for x in range (3):
   player1=input("Jogador 1, pedra[1],papel[2] e tesoura[3]: ")
+  while player1 != "1" and player1 != "2" and player1 != "3":
+      player1=input("Nota inválida, digite novamente:")
   player2=input("Jogador 2, sua vez! pedra[1] papel[2] e tesoura[3]:")
+  while player2 != "1" and player2 != "2" and player2 != "3":
+      player2=input("Nota inválida, digite novamente:")
 
   if player1 == player2:
       print(f"Ambos efetuaram o lançamento de {player1}, ou seja, empate!")
