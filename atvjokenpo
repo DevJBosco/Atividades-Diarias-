@@ -1,30 +1,35 @@
 jogador1=0
 jogador2=0
 empate=0
-for x in range (3):
-  player1=input("Jogador 1, pedra[1],papel[2] e tesoura[3]: ")
-  while player1 != "1" and player1 != "2" and player1 != "3":
-      player1=input("Nota inválida, digite novamente:")
-  player2=input("Jogador 2, sua vez! pedra[1] papel[2] e tesoura[3]:")
-  while player2 != "1" and player2 != "2" and player2 != "3":
-      player2=input("Nota inválida, digite novamente:")
+resp="y"
+while resp == "y":
+    for x in range (3):
+      player1=input("Jogador 1, pedra[1],papel[2] e tesoura[3]: ")
+      while player1 != "1" and player1 != "2" and player1 != "3":
+          player1=input("Nota inválida, digite novamente:")
+      player2=input("Jogador 2, sua vez! pedra[1] papel[2] e tesoura[3]:")
+      while player2 != "1" and player2 != "2" and player2 != "3":
+          player2=input("Nota inválida, digite novamente:")
 
-  if player1 == player2:
-      print(f"Ambos efetuaram o lançamento de {player1}, ou seja, empate!")
-      empate+=1
+      if player1 == player2:
+          print(f"Ambos efetuaram o lançamento de {player1}, ou seja, empate!")
+          empate+=1
 
-  elif (player1 == "1" and player2 == "3") or (player1 == "2" and player2 == "1") or (player1 == "3" and player2 == "2"):
-      print("Jogador1 venceu a rodada!")
-      jogador1+=1
+      elif (player1 == "1" and player2 == "3") or (player1 == "2" and player2 == "1") or (player1 == "3" and player2 == "2"):
+          print("Jogador1 venceu a rodada!")
+          jogador1+=1
 
-  else:
-     print("jogador2 venceu a rodada!")
-     jogador2+=1
+      else:
+         print("jogador2 venceu a rodada!")
+         jogador2+=1
 
-if (empate>=jogador1 and empate>=jogador2):
-    print("partida empatada, por favor tentem novamente!")
-else:
-    if jogador1>=jogador2:
-       print("Jogador1 venceu a partida,parabéns ＼⁠(⁠°⁠o⁠°⁠)⁠／!")
+    if (empate>=jogador1 and empate>=jogador2):
+        print("partida empatada, por favor tentem novamente!")
     else:
-       print("Jogador2 venceu a partida, GGWP (⁠ﾉﾟ⁠0ﾟ⁠)⁠ﾉ⁠~")
+        if jogador1>=jogador2:
+           print("Jogador1 venceu a partida,parabéns ＼⁠(⁠°⁠o⁠°⁠)⁠／!")
+        else:
+           print("Jogador2 venceu a partida, GGWP (⁠ﾉﾟ⁠0ﾟ⁠)⁠ﾉ⁠~")
+    resp=input("Deseja recomeçar a partida? y or n:")
+print("Partida encerrada!")
+
