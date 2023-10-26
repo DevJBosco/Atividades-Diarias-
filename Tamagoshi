@@ -1,0 +1,51 @@
+class Pessoa:
+    def _init_(self,nome,peso,idade):
+        self.nome = nome
+        self.peso = peso
+        self.idade = idade
+        self.comendo = False
+        self.andando = False
+        self.dormindo = False
+    def comer(self, comida):
+        if self.comendo == False:
+            self.comendo = True
+            print(f"{self.nome}, está ficando de buxim xei, comendo {comida}")
+        else:
+            print("Já esta satisfeito.")
+    def comerstop(self, comida):
+        if self.comendo == True:
+            print(f"{self.nome} ficou de buxim xei e parou de comer  {comida}")
+            self.comendo=False
+        else:
+            print("O amigo nãio está comendo")
+    def andar(self):
+        if self.comendo == True or self.dormindo == True:
+            print(f"Não é possivel pois {self.nome} esta ocupado comendo ou dormindo")
+        else:
+            print(f"{self.nome} Está andando")
+            self.andando = True
+    def andarstop(self):
+        if self.andando == True:
+            print(f"{self.nome} chegou no quarto e parou de andar")
+            self.andando = False
+        else:
+            print(f"{self.nome} não esta se movimentando")
+
+    def dormir(self):
+        if self.comendo == True or self.comendo == True:
+            print(f"Não é possivel dormir pois {self.nome} está ocupado")
+            self.dormindo = False
+        else:
+            print(f"{self.nome} foi dormir. Zzzzzzzzzz")
+            self.dormindo = True
+
+    def dormirstop(self):
+        print(f"{self.nome},Lembrou que era CLT e acordou as 4 da manhã para ir trabalhar")
+p1 = Pessoa("Alves", "150", "22")
+p1.comer("pizza")
+p1.comerstop("pizza")
+p1.andar()
+p1.andarstop()
+p1.dormir()
+p1.dormirstop()
+print(p1.nome,p1.peso, p1.idade)
