@@ -26,7 +26,7 @@ class Bancaria:
         else:
             print("Conta desativada, por favor contate o suporte para reativar a mesma!")
 
-user= Bancaria("40028922","0","RamonDino","Corrente",True)
+user= Bancaria("40028922","500","RamonDino","Corrente",True)
 
 
 
@@ -57,7 +57,5 @@ if nome ==  "4":
             while sacar<user.saldo:
                 sacar=float(input("Saque maior que seu saldo, insira o valor novamente seguindo seu limite financeiro:"))
     if extra == "3":
-        def contastatus() == True
-            print("Conta desativada, tenha um bom dia!")
-            self.contastatus == False
-        if user.con
+        #travei aqui kk
+        print("Verificando status")
