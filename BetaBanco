@@ -1,0 +1,61 @@
+#banco pobrank
+
+class Bancaria:
+    def __init__ (self,numero,saldo,nome,tipoconta,contastatus=True):
+         self.numero = numero
+         self.saldo = saldo
+         self.tipoconta = tipoconta
+         self.nome = nome
+
+    def verifnumero(self):
+        if self.contastatus == True:
+            print(f"O número da sua conta é {self.numero}")
+        else:
+            print("Ops sua conta encontra-se desativada, se possivel, retorne ao setor financeiro para reativar sua conta")
+    def verifsaldo(self):
+        if self.contastatus == True:
+            if self.saldo > "0" and self.saldo > 1:
+                print(f"Seu saldo é {self.saldo} R$")
+            else:
+                print(f"Seu saldo encontra-se zerado.")
+        else:
+            print("Conta encerrada, não é possível verificar o saldo.")
+    def veriftipoconta(self):
+        if self.contastatus==True:
+            print(f"Sua conta é do tipo {self.tipoconta}")
+        else:
+            print("Conta desativada, por favor contate o suporte para reativar a mesma!")
+
+user= Bancaria("40028922","0","RamonDino","Corrente",True)
+
+
+
+nome = input("Bem vindo ao atendimento ao cliente do Pobrank, qual operação deseja realizar? [1] para verificar seu nome, [2] para verificar seu saldo, [3] para verificar seu tipo de conta e [4] para acessar outras opções:")
+while nome != "1" and nome != "2" and nome != "3" and nome != "4":
+    nome = input(
+        "Número incorreto, qual operação deseja realizar? [1] para verificar seu nome, [2] para verificar seu saldo, [3] para verificar seu tipo de conta e [4] para acessar outras opções:")
+if nome == "1":
+    print(f"Seu nome é {user.nome}")
+if nome == "2":
+     print(f"Seu saldo atual é de {user.verifsaldo()}")
+if nome == "3":
+    print(f"Sua conta é do tipo {user.tipoconta}")
+if nome ==  "4":
+    extra = input(f"Digite 1 para depositar, 2 para sacar e 3 para ativar ou desativar sua conta.")
+    if extra == "1":
+        deposito = float(input("Insira o valor de deposito:"))
+        user.saldo = float(user.saldo)+deposito
+        print(f"Seu saldo atual e de {user.saldo}")
+    if extra == "2":
+        sacar = float(input(f"Seu saldo encontra-se em {user.saldo}, dito isso quanto deseja sacar?"))
+        if sacar>=user.saldo:
+            user.saldo= user.saldo-sacar
+        else:
+            sacar= float(input("Quantia acima do seu saldo, insira o valor novamente:"))
+            while sacar<user.saldo:
+                sacar=float(input("Saque maior que seu saldo, insira o valor novamente seguindo seu limite financeiro:"))
+    if extra == "3":
+        def contastatus() == True
+            print("Conta desativada, tenha um bom dia!")
+            self.contastatus == False
+        if user.con
