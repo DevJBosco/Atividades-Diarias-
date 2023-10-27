@@ -50,6 +50,8 @@ if nome ==  "4":
         sacar = float(input(f"Seu saldo encontra-se em {user.saldo}, dito isso quanto deseja sacar?"))
         if sacar>=user.saldo:
             user.saldo= user.saldo-sacar
+        elif user.saldo == "0":
+            print("Conta zerada, por favor realize um deposito.")
         else:
             sacar= float(input("Quantia acima do seu saldo, insira o valor novamente:"))
             while sacar<user.saldo:
