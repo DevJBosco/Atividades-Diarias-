@@ -30,19 +30,20 @@ class Bancaria:
 
     def saque(self,sacar):
         if self.contastatus == True:
-            if self.saldo <= 0 and sacar > self.saldo and sacar > self.limite:
-                print("Saldo insuficiente!")
+            if self.saldo <= 0 and sacar > self.saldo and sacar > self.limite+self.saldo:
+                 print("Saldo insuficiente!")
+
             elif sacar <=0:
                 print("Operação inválida!")
             if self.saldo>=sacar:
                 self.saldo=self.saldo-sacar
                 print(f"Saque realizado, seu saldo atual é de R${self.saldo}")
             else:
-                if sacar>self.saldo and sacar>self.saldo:
+                if sacar>self.saldo and sacar < self.limite+self.saldo:
+                     self.limite = self.limite -- (self.saldo - sacar)
                      self.saldo = self.saldo - sacar
-                     self.limite = self.limite -- self.saldo
                      print(f"Saque realizado, seu saldo agora é de R${self.saldo} e seu limite encontra-se em {self.limite}")
-                elif self.limite <= 0 :
+                elif self.limite + self.saldo < sacar :
                     print("Limite atingido, pague sua fatura!")
         else:
             print("Conta desativada! por favor ative para poder realizar as operações do banco")
