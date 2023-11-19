@@ -1,0 +1,240 @@
+resp = ""
+while resp == "s" or "S":
+    import mysql.connector
+
+    connect = mysql.connector.connect(
+        host="localhost",
+        user="root",
+        password="451236",
+        database="academia"
+    )
+    cursor = connect.cursor()
+
+    #CRUD
+    escolhaTable = input("Antes de tudo qual base de dados gostaria de acessar? [1] Alunos, [2] modalidades, [3] Personal, [4] Funcionários:")
+    while escolhaTable != "1" and escolhaTable != "2" and escolhaTable != "3" and escolhaTable != "4":
+        escolhaTable = input("Número inválido, por favor digite  novamente, lembrando que [1] Alunos, [2] modalidades, [3] Personal, [4] Funcionários:")
+    #alunos
+    if escolhaTable == "1":
+        escolha = input("bem vindo a academia Ironberg Recife, qual operação deseja realizar? [1] Inserir, [2] atualizar, [3] deletar e [4] vizualizar a tabela de dados:")
+        while escolha != "1" and escolha != "2" and escolha != "3" and escolha != "4":
+            escolha = input("Número inválido, por favor digite  novamente, lembrando: 1] Inserir, [2] atualizar, [3] deletar e [4] vizualizar a tabela de dados:")
+        if escolha == "1":
+            nome = input("Digite o nome do aluno:")
+            CPF = input("Digite o CPF do aluno:")
+            telefone = input("Digite o número do aluno:")
+            comando = f'INSERT INTO alunos (nome,CPF,telefone) VALUES ("{nome}","{CPF}", "{telefone}")'
+            cursor.execute(comando)
+            connect.commit()
+            print(f"{nome} foi adicionado ao banco de dados da academia, seja bem vindo!")
+        if escolha == "2":
+            choice = input("Qual dado gostaria de alterar? [1] para CPF ou [2] para telefone ")
+            while choice != "1" and choice !="2":
+                choice = input("ERRO: Qual dado gostaria de alterar? [1] para CPF ou [2] para telefone ")
+            if choice == "1":
+              nome= input("Digite o nome do Aluno:")
+              CPF = input("Digite o cpf:")
+              comando = f'UPDATE alunos SET CPF = "{CPF}" WHERE nome = "{nome}"'
+              cursor.execute(comando)
+              connect.commit()
+              print(f"{nome} teve seu CPF alterado.")
+            else:
+              nome = input("Digite o nome do Aluno:")
+              telefone = input("Digite o número:")
+              comando = f'UPDATE alunos SET telefone = "{telefone}" WHERE nome = "{nome}"'
+              cursor.execute(comando)
+              connect.commit()
+              print(f"{nome} teve seu telefone alterado.")
+        if escolha == "3":
+            nome=input("Digite o nome do aluno que deseja deletar da base de dados:")
+            comando = f'DELETE FROM alunos WHERE nome = "{nome}"'
+            cursor.execute(comando)
+            connect.commit()
+            print(f"{nome} foi deletado do banco de dados")
+        if escolha == "4":
+           comando = f'SELECT * FROM alunos'
+           cursor.execute(comando)
+           resultado = cursor.fetchall()
+           print(resultado)
+
+    #modalidades
+    if escolhaTable == "2":
+        escolha = input("bem vindo a academia Ironberg Recife, qual operação deseja realizar? [1] Inserir, [2] atualizar, [3] deletar e [4] vizualizar a tabela de dados:")
+        while escolha != "1" and escolha != "2" and escolha != "3" and escolha != "4":
+            escolha = input("Número inválido, por favor digite  novamente, lembrando: 1] Inserir, [2] atualizar, [3] deletar e [4] vizualizar a tabela de dados:")
+        if escolha == "1":
+            nome = input("Digite o nome da modalidade:")
+            horario = input("Digite o horário da modalidade")
+            cadastros = input("Quantos alunos estão matriculados?")
+            professor = input("Digite o nome do professor desta aula:")
+            comando = f'INSERT INTO modalidades (nome,horario,cadastros,professor) VALUES ("{nome}", "{horario}","{cadastros}", "{professor}")'
+            cursor.execute(comando)
+            connect.commit()
+            print(f"{nome} foi adicionado ao banco de dados da academia, seja bem vindo!")
+        if escolha == "2":
+            choice = input("Qual dado gostaria de alterar? [1] para horario, [2] para quantidade de alunos e  [3] para professor: ")
+            while choice != "1" and choice !="2" and choice != "3":
+                choice = input("ERRO:[1] para horario, [2] para quantidade de alunos e  [3] para professor")
+            if choice == "1":
+              nome= input("Digite o nome da modalidade :")
+              horario = input("Digite o novo horario:")
+              comando = f'UPDATE modalidades SET horario = "{horario}" WHERE nome = "{nome}"'
+              cursor.execute(comando)
+              connect.commit()
+              print(f"{nome} teve o horário alterado.")
+            if choice == "2":
+              nome = input("Digite o nome da modalidade:")
+              cadastros = input("Digite o número de alunos:")
+              comando = f'UPDATE modalidades SET cadastros = "{cadastros}" WHERE nome = "{nome}"'
+              cursor.execute(comando)
+              connect.commit()
+              print(f"{nome} teve seu número de alunos alterado.")
+            elif choice == "3":
+              nome = input("Digite o nome da modalidade:")
+              professor = input("Digite o nome do professor:")
+              comando = f'UPDATE modalidades SET professsor = "{professor}" WHERE nome = "{nome}"'
+              cursor.execute(comando)
+              connect.commit()
+
+        if escolha == "3":
+            nome=input("Digite o nome da modalidade que deseja deletar da base de dados:")
+            comando = f'DELETE FROM modalidades WHERE nome = "{nome}"'
+            cursor.execute(comando)
+            connect.commit()
+            print(f"{nome} foi deletado do banco de dados")
+        if escolha == "4":
+           comando = f'SELECT * FROM modalidades'
+           cursor.execute(comando)
+           resultado = cursor.fetchall()
+           print(resultado)
+
+    # Personal
+
+    if escolhaTable == "3":
+        escolha = input("bem vindo a academia Ironberg Recife, qual operação deseja realizar? [1] Inserir, [2] atualizar, [3] deletar e [4] vizualizar a tabela de dados:")
+        while escolha != "1" and escolha != "2" and escolha != "3" and escolha != "4":
+            escolha = input("Número inválido, por favor digite  novamente, lembrando: 1] Inserir, [2] atualizar, [3] deletar e [4] vizualizar a tabela de dados:")
+        if escolha == "1":
+           nome = input("Digite o nome do personal")
+           cpf = input("Digite o CPF do personal")
+           disponibilidade = input("Digite a hora que o Personal tem na sua agenda para novos alunos:")
+           alunos = input("Digite a quantidade de alunos que ele possui:")
+           telefone = input("Digite o telefone do mesmo:")
+           comando = f'INSERT INTO personal (nome,cpf,disponibilidade,alunos,telefone) VALUES ("{nome}","{cpf}", "{disponibilidade}", "{alunos}","{telefone}")'
+           cursor.execute(comando)
+           connect.commit()
+           print(f"{nome} foi adicionado ao banco de dados, seja bem vindo")
+        if escolha == "2":
+            choice = input("Qual dado gostaria de alterar? [1] para CPF, [2] para disponibilidade de horário ,  [3] para quantidade de alunos e [4] para telefone: ")
+            while choice != "1" and choice !="2" and choice != "3":
+                choice = input("ERRO:[1] para CPF, [2] para disponibilidade de horário ,  [3] para quantidade de alunos e [4] para telefone:")
+            if choice == "1":
+              nome= input("Digite o nome do Personal:")
+              cpf = input("Digite o CPF:")
+              comando = f'UPDATE personal SET cpf = "{cpf}" WHERE nome = "{nome}"'
+              cursor.execute(comando)
+              connect.commit()
+              print(f"{nome} teve o seu CPF alterado.")
+            if choice == "2":
+              nome = input("Digite o nome do Personal:")
+              disponibilidade = input("Digite o novo horário de disponibilidade:")
+              comando = f'UPDATE personal SET disponibilidade = "{disponibilidade}" WHERE nome = "{nome}"'
+              cursor.execute(comando)
+              connect.commit()
+              print(f"{nome} teve seu horário alterado.")
+            if choice == "3":
+              nome = input("Digite o nome do Professor:")
+              alunos = input("Digite a quantidade de alunos que ele possui:")
+              comando = f'UPDATE personal SET alunos = "{alunos}" WHERE nome = "{nome}"'
+              print(f"{nome} teve sua quantidade de alunos atualizada, agora são {alunos}")
+              cursor.execute(comando)
+              connect.commit()
+            elif choice == "4":
+              nome = input("Digite o nome do Professor:")
+              telefone = input("Digite o número de telefone do professor:")
+              comando = f'UPDATE personal SET telefone = "{telefone}" WHERE nome = "{nome}"'
+              print(f"{nome} teve seu telefone atualizado.")
+              cursor.execute(comando)
+              connect.commit()
+
+        if escolha == "3":
+            nome=input("Digite o nome do Personal que deseja deletar da base de dados:")
+            comando = f'DELETE FROM personal WHERE nome = "{nome}"'
+            cursor.execute(comando)
+            connect.commit()
+            print(f"{nome} foi deletado do banco de dados")
+        if escolha == "4":
+           comando = f'SELECT * FROM personal'
+           cursor.execute(comando)
+           resultado = cursor.fetchall()
+           print(resultado)
+
+    #Funcionários
+
+    if escolhaTable == "4":
+        escolha = input(
+            "bem vindo a academia Ironberg Recife, qual operação deseja realizar? [1] Inserir, [2] atualizar, [3] deletar e [4] vizualizar a tabela de dados:")
+        while escolha != "1" and escolha != "2" and escolha != "3" and escolha != "4":
+            escolha = input(
+                "Número inválido, por favor digite  novamente, lembrando: 1] Inserir, [2] atualizar, [3] deletar e [4] vizualizar a tabela de dados:")
+        if escolha == "1":
+            nome = input("Digite o nome do funcionário:")
+            cpf = input("Digite o CPF do funcionário:")
+            turno = input("Digite a hora que o funcionário se encontra trabalhando:")
+            feedback = input("Digite a reputação do mesmo, se encontra positiva ou negativa:")
+            telefone = input("Digite o telefone do mesmo:")
+            comando = f'INSERT INTO funcionarios (nome,cpf,turno,feedback,telefone) VALUES ("{nome}","{cpf}", "{turno}", "{feedback}","{telefone}")'
+            cursor.execute(comando)
+            connect.commit()
+            print(f"{nome} foi adicionado ao banco de dados, seja bem vindo")
+        if escolha == "2":
+            choice = input(
+                "Qual dado gostaria de alterar? [1] para CPF, [2] para turno,[3] para feedback e [4] para telefone: ")
+            while choice != "1" and choice != "2" and choice != "3":
+                choice = input(
+                    "ERRO:[1] para CPF, [2] para turno,[3] para feedback e [4] para telefone:")
+            if choice == "1":
+                nome = input("Digite o nome do funcionário:")
+                cpf = input("Digite o CPF:")
+                comando = f'UPDATE funcionarios SET cpf = "{cpf}" WHERE nome = "{nome}"'
+                cursor.execute(comando)
+                connect.commit()
+                print(f"{nome} teve o seu CPF alterado.")
+            if choice == "2":
+                nome = input("Digite o nome do funcionário:")
+                turno = input(f"Digite o novo horário de trabalho do {nome}:")
+                comando = f'UPDATE funcionarios SET turno = "{turno}" WHERE nome = "{nome}"'
+                cursor.execute(comando)
+                connect.commit()
+                print(f"{nome} teve seu horário alterado.")
+            if choice == "3":
+                nome = input("Digite o nome do funcionário:")
+                feedback = input("Digite o estado atual do feedback do mesmo, se encontra-se positivo ou negativo:")
+                comando = f'UPDATE funcionarios SET feedback = "{feedback}" WHERE nome = "{nome}"'
+                print(f"{nome} se encontra com feedback {feedback}")
+                cursor.execute(comando)
+                connect.commit()
+            elif choice == "4":
+                nome = input("Digite o nome do funcionário:")
+                telefone = input("Digite o número de telefone do mesmo:")
+                comando = f'UPDATE funcionarios SET telefone = "{telefone}" WHERE nome = "{nome}"'
+                print(f"{nome} teve seu telefone atualizado.")
+                cursor.execute(comando)
+                connect.commit()
+
+        if escolha == "3":
+            nome = input("Digite o nome do funcionário que deseja deletar da base de dados:")
+            comando = f'DELETE FROM funcionarios WHERE nome = "{nome}"'
+            cursor.execute(comando)
+            connect.commit()
+            print(f"{nome} foi deletado do banco de dados")
+        if escolha == "4":
+            comando = f'SELECT * FROM funcionarios'
+            cursor.execute(comando)
+            resultado = cursor.fetchall()
+            print(resultado)
+    resp = input("Deseja voltar ao inicio? S/N:")
+    if resp  != "s" and "S":
+        print("Encerrando sistema")
+        break
+
